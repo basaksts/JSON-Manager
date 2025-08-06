@@ -22,8 +22,9 @@ This script does not require any special library installations. You only need to
 
 The script is executed from the command line and accepts several arguments.
 
-```bash
+<in bash>
 python json_manager.py -i <input_file> -t <target_directory> -p <prefix_path> -a <action>
+
 
     Parameters:
 
