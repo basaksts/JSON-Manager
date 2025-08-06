@@ -1,6 +1,6 @@
 # JSON Manager Script
 
-A simple yet powerful Python tool designed to batch-add data to or update existing data in JSON files within a directory. It's particularly useful for managing multi-language translation files or JSON configuration files with a similar structure.
+A Python tool designed to batch-add data to or update existing data in JSON files within a directory. It's particularly useful for managing multi-language translation files or JSON configuration files with a similar structure.
 
 ## Features
 
@@ -36,50 +36,50 @@ python json_manager.py -i <input_file> -t <target_directory> -p <prefix_path> -a
 
     -a, --action (Optional): The action to perform. Can be add (default) or update.
 
-Example
-    Let's say you have a file named new_translations.json with new translations you want to add to your existing translation files located in the translations directory.
+For example, let's say you have a file named new_translations.json with new translations you want to add to your existing translation files located in the translations directory.
 
-    Content of new_translations.json:
-
-    JSON
-
-    {
-    "en": {
-        "newKey1": "This is a new English key."
-    },
-    "de": {
-        "newKey1": "Das ist ein neuer deutscher Schlüssel."
-    }
-    }
-    Content of translations/en.json (existing file):
+Content of new_translations.json:
 
     JSON
 
     {
-    "header": {
-        "title": "Welcome"
+        "en": {
+            "newKey1": "This is a new English key."
+        },
+        "de": {
+            "newKey1": "Das ist ein neuer deutscher Schlüssel."
+        }
     }
+Content of translations/en.json (existing file):
+
+    JSON
+
+    {
+        "header": {
+            "title": "Welcome"
+        }
     }
-    To add the new data under the releaseNotes.new_features path in add mode, use the following command:
+To add the new data under the releaseNotes.new_features path in add mode, use the following command:
 
     Bash
 
     python json_manager.py -i new_translations.json -t translations -p releaseNotes.new_features -a add
-    After running the command, the translations/en.json file will be updated as follows:
+After running the command, the translations/en.json file will be updated as follows:
 
     JSON
 
     {
-    "header": {
-        "title": "Welcome"
-    },
-    "releaseNotes": {
-        "new_features": {
-        "newKey1": "This is a new English key."
+        "header": {
+            "title": "Welcome"
+        },
+        "releaseNotes": {
+            "new_features": {
+                "newKey1": "This is a new English key."
+            }
         }
     }
-    }
-    Note: If the releaseNotes key does not exist, the script will automatically create it.
+Note: If the releaseNotes key does not exist, the script will automatically create it.
 
-Contributing
+## Contributing
+
 I welcome your feedback and contributions! If you find any bugs or have a feature suggestion, please feel free to open an Issue or submit a Pull Request.
