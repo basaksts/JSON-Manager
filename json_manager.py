@@ -2,16 +2,58 @@ import json
 import os
 import argparse
 
+description_text = """A tool to add or update data in all JSON files within a specified directory.
+
+--------------------------------------------------------------------------------
+INPUT FILE FORMAT:
+--------------------------------------------------------------------------------
+The input file should be a JSON object with language names as top-level keys.
+
+Example Format:
+{
+  "en": {
+    "newFeatureTitle": "Exciting New Feature",
+    "welcomeMessage": "Welcome to our app! We have a new feature for you.",
+    "buttonLabel": "Check it out"
+  }
+}
+Please ensure the language names in this file match your target files (e.g., 'en' for 'en.json').
+"""
+
 def main():
     """
     Main function to update all JSON files in a directory based on user input.
     """
-    parser = argparse.ArgumentParser(description='A tool to add or update data in all JSON files within a specified directory.')
-    parser.add_argument('--input-file', '-i', required=True, help='Path to the input JSON file containing the data to be added/updated.')
-    parser.add_argument('--target-directory', '-t', required=True, help='Path to the directory containing the JSON files to be updated.')
-    parser.add_argument('--prefix-path', '-p', required=True, help='The prefix key path to be prepended to each new key (e.g., update.releaseNotes).')
-    parser.add_argument('--action', '-a', choices=['add', 'update'], default='add', help='The action to perform: "add" (add new keys) or "update" (overwrite existing keys). Default: add.')
-
+    parser = argparse.ArgumentParser(
+        description=description_text,
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    
+    parser.add_argument(
+        '--input-file',
+        '-i',
+        required=True,
+        help='Path to the input file. See the above description for format details.'
+    )
+    parser.add_argument(
+        '--target-directory',
+        '-t',
+        required=True,
+        help='Path to the directory containing the JSON files to be updated.'
+    )
+    parser.add_argument(
+        '--prefix-path',
+        '-p',
+        required=True,
+        help='The prefix key path to be prepended to each new key (e.g., update.releaseNotes).'
+    )
+    parser.add_argument(
+        '--action',
+        '-a',
+        choices=['add', 'update'],
+        default='add',
+        help='The action to perform: "add" (add new keys) or "update" (overwrite existing keys). Default: add.'
+    )
     args = parser.parse_args()
 
     # Check if input and target paths exist
